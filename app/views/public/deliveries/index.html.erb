@@ -11,7 +11,7 @@
  </div>
  <div class="form-group">
   <%= f.label :"宛名", class: "brown-border px-3" %><br />
-  <%= f.text_field :address_name, placeholder:"令和道子", autofocus: true, autocomplete: "email" %>
+  <%= f.text_field :address_name, placeholder:"令和 道子", autofocus: true, autocomplete: "email" %>
  </div>
  </div>
   <%= f.submit "新規登録" %>
@@ -34,7 +34,7 @@
         <td><%= delivery.address_name %></td>
         <td>
           <%= link_to "編集する", edit_public_delivery_path(delivery), class: 'btn btn-sm btn-primary' %>
-          <%= link_to "削除する", public_delivery_path(delivery), method: :delete, class: 'btn btn-sm btn-danger' %>
+          <%= link_to "削除する", public_delivery_path(delivery), method: :delete, data: {confirm: "削除しますか？"}, class: 'btn btn-sm btn-danger' %>
         </td>
       </tr>
     <% end %>
