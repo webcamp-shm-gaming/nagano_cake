@@ -11,6 +11,7 @@
         <div>電話番号</div><div><%= @customer.phone_number %></div>
         <div>メールアドレス</div><div><%= @customer.email %></div>
         <div>会員ステータス</div><div><%= @customer.is_deleted %></div>
+        <div><%= link_to "編集する",edit_admin_customer_path(@customer)  %></div>
       </div>
     </div>
   </div>
