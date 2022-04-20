@@ -4,14 +4,14 @@
       <div class="col">
         <h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h3>
         <div>会員ID</div><div><%= @customer.id %></div>
-        <div>氏名</div><div><%= @customer.last_name %>  <%= @customer.first_name %></div>
-        <div>フリガナ</div><div><%= @customer.last_name_kana %>  <%= @customer.first_name_kana %></div>
+        <div>氏名</div><div><%= @customer.last_name %><%= @customer.first_name %></div>
+        <div>フリガナ</div><div><%= @customer.last_name_kana %><%= @customer.first_name_kana %></div>
         <div>郵便番号</div><div><%= @customer.post_code %></div>
         <div>住所</div><div><%= @customer.address %></div>
         <div>電話番号</div><div><%= @customer.phone_number %></div>
         <div>メールアドレス</div><div><%= @customer.email %></div>
         <div>会員ステータス</div><div><%= @customer.is_deleted %></div>
-        <div><%= link_to "編集する",edit_admin_customer_path(@customer)  %></div>
+        <div><%= link_to "編集する", edit_admin_customer_path(@customer) %></div>
       </div>
     </div>
   </div>
