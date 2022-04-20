@@ -8,5 +8,5 @@
   <p><%= @item.itroduction %></p>
 　￥<%= @item.price.to_s(:delimited) %>（税込）
 　<%= f.select :amount, [['1',1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]] %>
-　<%= link_to "カートに入れる", cart_items_path, class: "btn btn-sucess cart_items" %>
+　<%= link_to "カートに入れる", public_cart_items_path, class: "btn btn-sucess cart_items" %>
 </div>
