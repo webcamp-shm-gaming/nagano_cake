@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'homes/top'
   end
 
-  namespace :public do
+  scope module: :public do
     get 'homes/top'
     get 'homes/about'
     resources :customers, only: [:show, :edit, :update]

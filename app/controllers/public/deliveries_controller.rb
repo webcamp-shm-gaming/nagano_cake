@@ -10,7 +10,7 @@ class Public::DeliveriesController < ApplicationController
     @delivery = Delivery.new(delivery_params)
     if @delivery.save
       flash[:notice] = "配達先情報を登録しました"
-      redirect_to public_deliveries_path
+      redirect_to deliveries_path
     else
       @deliveries = Delivery.all
       render "index"
@@ -24,7 +24,7 @@ class Public::DeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     if @delivery.update(delivery_params)
-      redirect_to public_deliveries_path, notice: "配達先情報の更新に成功しました"
+      redirect_to deliveries_path, notice: "配達先情報の更新に成功しました"
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class Public::DeliveriesController < ApplicationController
     delivery = Delivery.find(params[:id])
     flash[:notice] = "配送先情報を削除しました。"
     delivery.destroy
-    redirect_to public_deliveries_path
+    redirect_to deliveries_path
   end
 
   private
@@ -42,4 +42,5 @@ class Public::DeliveriesController < ApplicationController
 	def delivery_params
    params.require(:delivery).permit(:customer_id, :post_code, :address, :address_name).merge(customer_id: current_customer.id)
   end
+
 end
