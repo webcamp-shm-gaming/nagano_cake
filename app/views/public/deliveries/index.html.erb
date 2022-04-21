@@ -1,6 +1,6 @@
 <h3>配送先登録/一覧</h3>
 
-<%= form_with model: @delivery, url:public_deliveries_path do |f| %>
+<%= form_with model: @delivery, url:deliveries_path do |f| %>
  <div class="form-group">
   <%= f.label :"郵便番号（ハイフンなし）", class: "brown-border px-3" %><br />
   <%= f.text_field :post_code, placeholder:"000000", autofocus: true, autocomplete: "email" %>
@@ -33,8 +33,8 @@
         <td><%= delivery.address %></td>
         <td><%= delivery.address_name %></td>
         <td>
-          <%= link_to "編集する", edit_public_delivery_path(delivery), class: 'btn btn-sm btn-primary' %>
-          <%= link_to "削除する", public_delivery_path(delivery), method: :delete, data: {confirm: "削除しますか？"}, class: 'btn btn-sm btn-danger' %>
+          <%= link_to "編集する", edit_delivery_path(delivery), class: 'btn btn-sm btn-primary' %>
+          <%= link_to "削除する", delivery_path(delivery), method: :delete, data: {confirm: "削除しますか？"}, class: 'btn btn-sm btn-danger' %>
         </td>
       </tr>
     <% end %>
