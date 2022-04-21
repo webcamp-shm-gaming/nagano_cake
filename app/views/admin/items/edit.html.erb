@@ -16,7 +16,7 @@
      </div>
      <div>
        <label for="item_genre">ジャンル</label>
-       <%= f.select :genre_id, [['ケーキ', ケーキ], ['焼き菓子', 焼き菓子], ['クレープ', クレープ], ['キャンディ', キャンディ]] %>
+       <%= f.select :genre_id, *[ケーキ, 焼き菓子, クレープ, キャンディ] %>
      </div>
      <div>
        <label for="item_price">税抜価格</label>

@@ -1,4 +1,26 @@
 <h1>商品一覧</h1>
 <div>
-  
+  <table>
+    <thead>
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+        <th colspan="5"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= item_id.count %></td>
+        <td><%= link_to @item.name, item_path(@item.id) %></td>
+        <td><%= @item.price %></td>
+        <td><%= @genre.name %></td>
+        <td>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
