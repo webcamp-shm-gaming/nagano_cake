@@ -10,7 +10,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      flash[:updateu] = 'You have updated user successfully.'
+      flash[:update] = 'You have updated customer successfully.'
       redirect_to customers_path(@customer.id)
     else
       render :edit
