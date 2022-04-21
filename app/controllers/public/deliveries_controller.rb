@@ -37,7 +37,7 @@ class Public::DeliveriesController < ApplicationController
     redirect_to deliveries_path
   end
 
-private
+  private
 
   def delivery_params
     params.require(:delivery).permit(:customer_id, :post_code, :address, :address_name).merge(customer_id: current_customer.id)
