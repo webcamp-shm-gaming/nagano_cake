@@ -2,18 +2,22 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    root to: "homes#top"
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items
     resources :genres, only: [:create, :index, :edit, :update]
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
-    get 'homes/top'
   end
 
   scope module: :public do
+<<<<<<< HEAD
     get 'homes/top'
+=======
+    root to: "homes#top"
+>>>>>>> origin/develop
     get 'homes/about'
-    resources :customers, only: [:show, :edit, :update]
+    resource :customers, only: [:show, :edit, :update]
     get 'customers/unsubscribe'
     resources :items, only: [:index, :show]
     resources :cart_items,only: [:index,:update,:create,:destroy] do
@@ -23,7 +27,7 @@ Rails.application.routes.draw do
     end
     resources :orders, only: [:new, :create, :index, :show]
     get 'orders/complete'
-    resources :deliveries, only: [:create, :index, :edit, :update]
+    resources :deliveries, only: [:create, :index, :edit, :destroy, :update]
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
