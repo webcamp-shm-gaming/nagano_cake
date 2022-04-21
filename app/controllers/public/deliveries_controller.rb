@@ -1,6 +1,9 @@
 class Public::DeliveriesController < ApplicationController
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/develop
   def index
     @delivery = Delivery.new
     @deliveries = Delivery.all
@@ -19,6 +22,7 @@ class Public::DeliveriesController < ApplicationController
 
   def edit
     @delivery = Delivery.find(params[:id])
+<<<<<<< HEAD
   end
 
   def update
@@ -30,6 +34,20 @@ class Public::DeliveriesController < ApplicationController
     end
   end
 
+=======
+  end
+
+  def update
+    @delivery = Delivery.find(params[:id])
+    if @delivery.update(delivery_params)
+      flash[:notice] = "配達先情報を編集しました"
+      redirect_to deliveries_path
+    else
+      render :edit
+    end
+  end
+
+>>>>>>> origin/develop
   def destroy
     delivery = Delivery.find(params[:id])
     flash[:notice] = "配送先情報を削除しました。"
@@ -37,10 +55,17 @@ class Public::DeliveriesController < ApplicationController
     redirect_to deliveries_path
   end
 
+<<<<<<< HEAD
   private
 
 	def delivery_params
    params.require(:delivery).permit(:customer_id, :post_code, :address, :address_name).merge(customer_id: current_customer.id)
+=======
+private
+
+  def delivery_params
+    params.require(:delivery).permit(:customer_id, :post_code, :address, :address_name).merge(customer_id: current_customer.id)
+>>>>>>> origin/develop
   end
 
 end
