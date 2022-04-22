@@ -11,11 +11,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-<<<<<<< HEAD
-    get 'homes/top'
-=======
     root to: "homes#top"
->>>>>>> origin/develop
     get 'homes/about'
     resource :customers, only: [:show, :edit, :update]
     get 'customers/unsubscribe'
