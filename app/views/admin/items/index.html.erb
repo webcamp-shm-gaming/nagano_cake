@@ -12,15 +12,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><%= item_id.count %></td>
-        <td><%= link_to @item.name, item_path(@item.id) %></td>
-        <td><%= @item.price %></td>
-        <td><%= @genre.name %></td>
-        <td>
-
-        </td>
-      </tr>
+     <% @items.each do |item| %>
+        <tr>
+          <td><%=  %></td>
+          <td><%= link_to @item.name, admin_item_path(@item.id) %></td>
+          <td><%= item.price %></td>
+          <td><%= genre.name %></td>
+          <td>
+            
+          </td>
+        </tr>
+     <% end %>
     </tbody>
   </table>
 </div>

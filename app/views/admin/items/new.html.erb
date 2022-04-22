@@ -2,13 +2,13 @@
   <div>
     <div>
       <h1>商品新規登録</h1>
-    <%= form_with model:item, local:true do |f| %>
+    <%= form_with model: @item, local:true do |f| %>
      <label for="item_image">商品画像</label>
      <%= f.file_field :image, placeholder: "商品画像", class: 'form-control-file item_image', accept: "image/*" %>
     </div>
      <div>
        <label for="item_name">商品名</label>
-       <%= f.text_filed :name, autofocus: true, id: "item_name", placeholder: "名前", class: 'form-control name' %>
+       <%= f.text_field :name, autofocus: true, id: "item_name", placeholder: "名前", class: 'form-control name' %>
      </div>
      <div>
        <label for="item_introduction">商品説明</label>
@@ -16,7 +16,7 @@
      </div>
      <div>
        <label for="item_genre">ジャンル</label>
-       <%= f.select :genre_id, *[ケーキ, 焼き菓子, クレープ, キャンディ] %>
+       <%= f.select :genre_id, genre.all, genre_id, name, include_blank: "選択して下さい" %>
      </div>
      <div>
        <label for="item_price">税抜価格</label>
@@ -24,7 +24,7 @@
      </div>
      <div>
        <label for="item_is_active">販売ステータス</label>
-       <%= f.select :is_active, [['販売中', 販売中], ['販売停止中', 販売停止中]]　class:'btn btn-success' %>
+       <%= f.select :is_active, [['販売中', 販売中], ['販売停止中', 販売停止中]],　class:'btn btn-success' %>
      </div>
      <div>
        <%= f.submit '新規登録', class: 'btn btn-success' %>
