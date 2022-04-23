@@ -16,11 +16,11 @@
      </div>
      <div>
        <label for="item_genre">ジャンル</label>
-       <%= f.select :genre_id, genre.all, genre_id, name, include_blank: "選択して下さい" %>
+       <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
      </div>
      <div>
        <label for="item_price">税抜価格</label>
-       <%= @item.price.to_s(:delimited) %>円
+       <%= @item.add_tax_price.to_s(:delimited) %>円
      </div>
      <div>
        <label for="item_is_active">販売ステータス</label>

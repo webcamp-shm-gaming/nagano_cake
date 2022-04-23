@@ -1,8 +1,10 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  has_many :genres, dependent: :destroy
-  belongs_to :cart_item
-  def price
-    (self.price * 1.10).round
+  belongs_to :genres
+
+
+
+  def add_tax_price
+   (se.price * 1.10).round
   end
 end
