@@ -1,5 +1,12 @@
 class Public::OrdersController < ApplicationController
   def new
+    @order = Order.new
+    #@delivery =
+    @customer = Customer.find(params[:id])
+  end
+
+  def confirm
+
   end
 
   def index
