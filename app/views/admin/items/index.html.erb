@@ -14,12 +14,16 @@
     <tbody>
      <% @items.each do |item| %>
         <tr>
-          <td><%=  %></td>
-          <td><%= link_to @item.name, admin_item_path(@item.id) %></td>
+          <td><%= item.id  %></td>
+          <td><%= link_to item.name, admin_item_path(item.id) %></td>
           <td><%= item.price %></td>
-          <td><%= genre.name %></td>
+          <td><%= item.genre.name %></td>
           <td>
-            
+            <% if item.is_active %>
+             <%= link_to "販売中", admin_items_path(item.id, post: {is_actived: true}), method: :put %>
+            <% else %>
+             <%= link_to "販売停止中", admin_items_path(item.id, post: {is_actived: false}), method: :put %>
+            <% end %>
           </td>
         </tr>
      <% end %>

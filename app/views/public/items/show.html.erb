@@ -1,11 +1,7 @@
 <div>
-  <% @item.image.attached? %>
-   <%= image_tag item.image, size: "300x300" %>
-  <% else %>
-   <%= image_tag 'no_iamage', size: "300x300" %>
-  <% end %>
+   <%= image_tag @item.image, size: "200x200" %>
   <h2><%= @item.name %></h2>
-  <p><%= @item.itroduction %></p>
+  <p><%= @item.introduction %></p>
 　￥<%= @item.price.to_s(:delimited) %>（税込）
 　<%= f.select :amount, [['1',1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]] %>
 　<%= link_to "カートに入れる", public_cart_items_path, class: "btn btn-sucess cart_items" %>

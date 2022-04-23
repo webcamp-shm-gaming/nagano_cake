@@ -1,10 +1,11 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  belongs_to :genres
+  belongs_to :genre
 
 
-
+  
   def add_tax_price
-   (se.price * 1.10).round
+    
+   (self.price * 1.10).round
   end
 end

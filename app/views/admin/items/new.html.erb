@@ -2,7 +2,7 @@
   <div>
     <div>
       <h1>商品新規登録</h1>
-    <%= form_with model: @item, local:true do |f| %>
+    <%= form_with model: @item, url: admin_items_path(@item.id), method: :post do |f| %>
      <label for="item_image">商品画像</label>
      <%= f.file_field :image, placeholder: "商品画像", class: 'form-control-file item_image', accept: "image/*" %>
     </div>
@@ -20,11 +20,11 @@
      </div>
      <div>
        <label for="item_price">税抜価格</label>
-       <%= @item.add_tax_price.to_s(:delimited) %>円
+       <%= f.number_field :price, placeholder: "1000", class: 'form-control price' %>円
      </div>
      <div>
        <label for="item_is_active">販売ステータス</label>
-       <%= f.select :is_active, [['販売中', 販売中], ['販売停止中', 販売停止中]],　class:'btn btn-success' %>
+      <%= f.select :is_active, [['販売中', true], ['販売停止中', false]],　class:'btn btn-success' %>
      </div>
      <div>
        <%= f.submit '新規登録', class: 'btn btn-success' %>
