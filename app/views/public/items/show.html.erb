@@ -3,9 +3,9 @@
   <h2><%= @item.name %></h2>
   <p><%= @item.introduction %></p>
 　<span>￥<%= @item.with_tax_price.to_s(:delimited) %>（税込）</span>
-　<p><%= form_with model: @item, url: cart_items_path do |f| %>
+　<p><%= form_with model: @item do |f| %>
 　     <%= f.select :amount, *[1..5] %>
-　     <%= f.submit "カートに入れる", class: "btn btn-sucess" %>
 　   <% end %>
+　     <%= link_to "カートに入れる", cart_items_path, class: "btn btn-sucess" %>
 　</p>
 </div>

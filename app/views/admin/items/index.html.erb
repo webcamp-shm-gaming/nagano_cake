@@ -20,9 +20,9 @@
           <td><%= item.genre.name %></td>
           <td>
             <% if item.is_active %>
-             <%= link_to "販売中", admin_items_path(item.id, post: {is_actived: true}), method: :put %>
+             <%= link_to "販売中", admin_items_path(item.id, post: {is_actived: true}), method: :put, class: 'btn btn-success' %>
             <% else %>
-             <%= link_to "販売停止中", admin_items_path(item.id, post: {is_actived: false}), method: :put %>
+             <%= link_to "販売停止中", admin_items_path(item.id, post: {is_actived: false}), method: :put, class: 'btn btn-outline-secondary btn-block' %>
             <% end %>
           </td>
         </tr>
