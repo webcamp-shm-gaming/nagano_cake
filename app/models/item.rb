@@ -3,9 +3,9 @@ class Item < ApplicationRecord
   belongs_to :genre
 
 
-  
-  def add_tax_price
-    
-   (self.price * 1.10).round
+
+  def with_tax_price
+
+   (price * 1.10).floor
   end
 end
