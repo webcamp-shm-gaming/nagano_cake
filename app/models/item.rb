@@ -3,6 +3,8 @@ class Item < ApplicationRecord
   # itemsテーブルとcart_itemsテーブルは1:Nの関係
   has_many :cart_items, dependent: :destroy
 
+  belongs_to :genre
+
   validates :price, presence: true
 
   # 消費税を求めるメソッド
