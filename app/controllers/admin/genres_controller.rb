@@ -7,8 +7,12 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
-    @genre.save
-    redirect_to admin_genres_path, notice: "ジャンル名を登録しました"
+    if @genre.save
+     redirect_to admin_genres_path, notice: "ジャンル名を登録しました"
+    else
+      @genres = Genre.all
+      render :index
+    end
   end
 
 

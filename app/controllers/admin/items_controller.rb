@@ -6,8 +6,12 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
-    redirect_to admin_items_path, notice: "商品を登録しました"
+    if @item.save
+     redirect_to admin_items_path, notice: "商品を登録しました"
+    else
+      @items = Item.all
+      render :index
+    end
   end
 
   def index
@@ -24,8 +28,11 @@ class Admin::ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to admin_item_path(item.id), notice: "商品を変更しました"
+    if item.update(item_params)
+     redirect_to admin_item_path(item.id), notice: "商品を変更しました"
+    else
+      render :edit
+    end
   end
 
   def destroy

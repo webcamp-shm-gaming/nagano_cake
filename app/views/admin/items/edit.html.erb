@@ -2,6 +2,7 @@
   <div>
     <div>
       <h1>商品編集</h1>
+    <%= render 'layouts/errors', obj: @item %>
     <%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
      <label for="item_image">商品画像</label>
      <%= f.file_field :image, placeholder: "商品画像", class: "form-control-file item_image", accept: "image/*" %>
