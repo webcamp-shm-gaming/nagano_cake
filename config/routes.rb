@@ -16,13 +16,17 @@ Rails.application.routes.draw do
     resource :customers, only: [:show, :edit, :update]
     get 'customers/unsubscribe'
     resources :items, only: [:index, :show]
-    resources :cart_items, only: [:create, :index, :update, :destroy]
-    resources :orders, only: [:new, :create, :index, :show] do
+    resources :cart_items,only: [:index,:update,:create,:destroy] do
+      collection do
+        delete '/destroy_all' => 'cart_items#destroy_all'
+      end
+    end
+    get 'orders/complete'
+    resources :orders, only: [:new, :create, :index, :show]  do
       collection do
         post :confirm
       end
     end
-    get 'orders/complete'
     resources :deliveries, only: [:create, :index, :edit, :destroy, :update]
   end
 
