@@ -3,17 +3,14 @@ class Item < ApplicationRecord
   # itemsテーブルとcart_itemsテーブルは1:Nの関係
   has_many :cart_items, dependent: :destroy
 
-<<<<<<< HEAD
-  validates :genre_id, presence: true
-  validates :name, presence: true
-  validates :introduction, presence: true
-  validates :price, presence: true
-  validates :is_active, presence: true
-=======
   belongs_to :genre
 
+  validates :image, presence: true
+  validates :genre_id, presence: true
   validates :price, presence: true
->>>>>>> develop
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :is_active, inclusion: { in: [true, false] }
 
   # 消費税を求めるメソッド
   def with_tax_price
