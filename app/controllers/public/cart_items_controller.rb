@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
 
   def index
-    # 今ログインしている会員がもつカート商品の全て
+    # 今ログインしている会員がもつカート商品:customerモデルとcart_itemモデルは1対多の関係なので、cart_itemは複数形
     @cart_items = current_customer.cart_items
   end
 
