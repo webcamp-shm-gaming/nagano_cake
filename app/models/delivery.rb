@@ -6,5 +6,6 @@ class Delivery < ApplicationRecord
     validates :post_code
     validates :address
     validates :address_name
+    validates :customer_id
   end
 end
