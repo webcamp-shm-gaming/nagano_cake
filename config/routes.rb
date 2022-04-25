@@ -17,7 +17,11 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe'
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:create, :index, :update, :destroy]
-    resources :orders, only: [:new, :create, :index, :show]
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post :confirm
+      end
+    end
     get 'orders/complete'
     resources :deliveries, only: [:create, :index, :edit, :destroy, :update]
   end
