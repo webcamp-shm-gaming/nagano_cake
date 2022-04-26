@@ -7,4 +7,9 @@ class Delivery < ApplicationRecord
     validates :address
     validates :address_name
   end
+
+  def delivery_display
+    '〒' + post_code + ' ' + address + ' ' + address_name
+  end
+
 end
