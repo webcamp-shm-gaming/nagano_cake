@@ -17,7 +17,7 @@
       <th style="width: 20%">小計</th>
       <th style="width: 10%"></th>
     </tr>
-     <!--合計金額totalの初期化-->
+
      <% total = 0 %>
    </thead>
    <tbody>
@@ -32,7 +32,6 @@
          <% end %>
          <%= cart_item.item.name %>
         </td>
-        <!--変数cart_itemに紐づく商品の税込み単価：item.with_tax_priceはitemモデル内に記述した消費税を求めるメソッド-->
         <td><%= cart_item.item.with_tax_price %></td>
         <td>
          <%= form_with model: cart_item do |f| %>
