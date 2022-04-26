@@ -11,12 +11,13 @@ class Admin::ItemsController < ApplicationController
      redirect_to admin_items_path, notice: "商品を登録しました"
     else
       @items = Item.all
-      render :index
+      render :new
     end
   end
 
   def index
     @items = Item.all
+
   end
 
   def show

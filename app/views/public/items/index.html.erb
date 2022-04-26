@@ -1,13 +1,15 @@
-<div>
-  <h1>商品一覧(全件)</h1>
-  <% @items.each do |item| %>
-  <div>
-　　<p><%= link_to item_path(item.id) do %>
-　　    <%= image_tag item.image if item.image.attached? %>
-　　   <% end %>
-　　</p>
-　　<p><%= item.name %></p>
-　　￥<%= item.price.to_s(:delimited) %>
-　<% end %>
+<h1>商品一覧(全<%= @items.count %>件)</h1>
+<div class="container">
+　<div class="row">
+    <% @items.each do |item| %>
+  　<div class="col-3">
+  　　<p><%= link_to item_path(item.id) do %>
+　　　　　　<%= image_tag item.image, size:"200x200" if item.image.attached? %>
+  　　     <% end %>
+  　　</p>
+  　　<p><%= item.name %></p>
+  　　￥<%= item.price.to_s(:delimited) %>
+    </div>
+  　 <% end %>
   </div>
 </div>
