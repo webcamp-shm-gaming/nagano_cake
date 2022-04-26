@@ -39,7 +39,7 @@
           </tr>
           <tr>
             <td>請求金額</td>
-            <td><%= total + 800 %></td>
+            <td><%= @order.bill = total + 800 %></td>
           </tr>
 
         </table>
@@ -56,6 +56,7 @@
             <%= f.hidden_field :delivery_name %>
             <%= f.hidden_field :postage %>
             <%= f.hidden_field :order_status %>
+
             <%= f.submit "注文を確定する" %>
           <% end %>
         </div>

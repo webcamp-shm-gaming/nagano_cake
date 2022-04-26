@@ -19,27 +19,48 @@
           </tr>
           <tr>
             <td>支払方法</td>
-            <td><%= @order.pay_type %></td>
+            <td><%= @order.pay_type_i18n %></td>
           </tr>
           <tr>
             <td>ステータス</td>
-            <td><%= @order.order_status %></td>
+            <td><%= @order.order_status_i18n %></td>
           </tr>
         </table>
         <h4>請求情報</h4>
         <table class='table'>
           <tr>
             <td>商品合計</td>
-            <td><%= @order.order_detail.price %></td>
+            <td><%= @order.bill - 800 %></td>
           </tr>
           <tr>
             <td>配送料</td>
-            <td><%= 800 %></td>
+            <td><%= @order.postage %></td>
           </tr>
           <tr>
-            <td>ステータス</td>
-            <td><%= @order.order_detail.price + 800 %></td>
+            <td>ご請求額</td>
+            <td><%= @order.bill %></td>
           </tr>
+        </table>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>商品</th>
+              <th>単価（税込）</th>
+              <th>個数</th>
+              <th>小計</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order_details.each do |order_detail| %>
+            <tr>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.item.price %></td>
+              <td><%= order_detail.amount %></td>
+              <td><%= order_detail.subtotal %></td>
+            </tr>
+            <% end %>
+          </tbody>
+
         </table>
       </div>
     </div>

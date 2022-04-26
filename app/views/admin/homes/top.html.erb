@@ -13,6 +13,7 @@
             </tr>
           </thead>
           <tbody>
+            <% total_amount = 0 %>
             <% @orders.each do |order| %>
             <tr>
               <td>
@@ -21,8 +22,13 @@
                 <% end %>
               </td>
               <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
-              <td><%= @total_amount %></td>
-              <td><%= order.order_status %></td>
+              <td>
+                <% order.order_details.each do |order_detail| %>
+                  <% total_amount += order_detail.amount %>
+                <% end %>
+                <%= total_amount %>
+              </td>
+              <td><%= order.order_status_i18n %></td>
             </tr>
             <% end %>
           </tbody>

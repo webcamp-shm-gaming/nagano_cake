@@ -7,6 +7,8 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @order.postage = 800
+    @order.order_status = "machi"
     if params[:order][:select_address] == "0"
       @order.delivery_post_code = current_customer.post_code
       @order.delivery_address = current_customer.address
@@ -28,22 +30,26 @@ class Public::OrdersController < ApplicationController
   def create # Order に情報を保存します
     cart_items = current_customer.cart_items.all
   # ログインユーザーのカートアイテムをすべて取り出して cart_items に入れます
-    @order = current_customer.orders.new(order_params)
+    #@order = current_customer.orders.new(order_params)
   # 渡ってきた値を @order に入れます
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    if @order.save
+      cart_items.each do |cart_item|
+    # 取り出したカートアイテムの数繰り返します
+    # order_detail にも一緒にデータを保存する必要があるのでここで保存します
+        order_detail = OrderDetail.new
+        order_detail.item_id = cart_item.item_id
+        order_detail.order_id = @order.id
+        order_detail.amount = cart_item.amount
+        order_detail.create_status = "huka"
+    # 購入が完了したらカート情報は削除するのでこちらに保存します
+        order_detail.price = cart_item.item.price
+    # カート情報を削除するので item との紐付けが切れる前に保存します
+        order_detail.save
 
-    cart_items.each do |cart_item|
-  # 取り出したカートアイテムの数繰り返します
-  # order_detail にも一緒にデータを保存する必要があるのでここで保存します
-      order_detail = OrderDetail.new
-      order_detail.item_id = cart_item.item_id
-      order_detail.order_id = @order.id
-      order_detail.amount = cart_item.amount
-  # 購入が完了したらカート情報は削除するのでこちらに保存します
-      order_detail.price = cart_item.item.price
-  # カート情報を削除するので item との紐付けが切れる前に保存します
-      order_detail.save
+      end
     end
-    @order.save
     cart_items.destroy_all
   # ユーザーに関連するカートのデータ(購入したデータ)をすべて削除します(カートを空にする)
     redirect_to orders_complete_path
@@ -56,6 +62,8 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+
+    @order_details = @order.order_details
   end
 
   def complete
@@ -64,7 +72,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:pay_type, :delivery_post_code, :delivery_address, :delivery_name)
+    params.require(:order).permit(:pay_type, :delivery_post_code, :delivery_address, :delivery_name, :bill, :postage, :order_status)
   end
 
 end

@@ -4,3 +4,15 @@ ja:
       pay_type:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+      order_status:
+        machi: "入金待ち"
+        kakuninn: "入金確認"
+        seisaku: "製作中"
+        junbi: "発送準備中"
+        hasso: "発送済み"
+    order_detail:
+      create_status:
+        huka: "製作不可"
+        machi: "製作待ち"
+        seisaku: "製作中"
+        kanryo: "製作完了"
