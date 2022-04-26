@@ -3,6 +3,8 @@ class CartItem < ApplicationRecord
   belongs_to :item
   belongs_to :customer
 
+  has_one_attached :image
+
   validates :customer_id, :item_id, :amount, presence: true
   # 小計を求めるメソッド
   def subtotal

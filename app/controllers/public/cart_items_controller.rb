@@ -1,4 +1,5 @@
 class Public::CartItemsController < ApplicationController
+  before_action :authenticate_customer!
 
   def index
     # 今ログインしている会員がもつカート商品:customerモデルとcart_itemモデルは1対多の関係なので、cart_itemは複数形
@@ -28,16 +29,15 @@ class Public::CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
-    flash[:notice] = "商品を削除しました"
+    flash[:notice] = "商品を更新しました"
     redirect_to cart_items_path
   end
 
-  def destory
+  def destroy
     @cart_item = CartItem.find(params[:id])
-    @cart_item.destory
+    @cart_item.destroy
     flash[:alert] = "商品を削除しました"
     redirect_to cart_items_path
-
   end
 
   def destroy_all
