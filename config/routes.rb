@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'homes/about'
     resource :customers, only: [:show, :edit, :update]
     get 'customers/unsubscribe'
+    patch 'customers/withdraw'
     resources :items, only: [:index, :show]
     resources :cart_items,only: [:index,:update,:create,:destroy] do
       collection do

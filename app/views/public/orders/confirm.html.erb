@@ -1,64 +1,68 @@
 <main>
   <div class="container">
     <div class="row">
-      <div class="col">
-        <table class='table mt-2'>
+      <div class="col-5">
+          <table class="table table-bordered table-striped">
 
-          <thead>
+            <thead>
+              <tr>
+                <th>商品名</th>
+                <th>単価（税込）</th>
+                <th>数量</th>
+                <th>小計</th>
+              </tr>
+               <!--合計金額totalの初期化-->
+               <% total = 0 %>
+            </thead>
+            <tbody>
+              <% @cart_items.each do |cart_item| %>
+              <tr>
+                <!--変数cart_itemの商品名:itemsテーブルのnameカラム-->
+                <td><%= cart_item.item.name %></td>
+                <!--変数cart_itemに紐づく商品の税込み単価：item.with_tax_priceはitemモデル内に記述した消費税を求めるメソッド-->
+                <td><%= cart_item.item.with_tax_price %></td>
+                <td><%= cart_item.amount %></td>
+                <td><%= cart_item.subtotal %></td>
+              </tr>
+              <% total += cart_item.subtotal %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-5">
+          <table class="table table-bordered table-striped">
             <tr>
-              <th>商品名</th>
-              <th>単価（税込）</th>
-              <th>数量</th>
-              <th>小計</th>
+              <td>送料</td>
+              <td><%= 800 %></td>
             </tr>
-             <!--合計金額totalの初期化-->
-             <% total = 0 %>
-          </thead>
-          <tbody>
-            <% @cart_items.each do |cart_item| %>
             <tr>
-              <!--変数cart_itemの商品名:itemsテーブルのnameカラム-->
-              <td><%= cart_item.item.name %></td>
-              <!--変数cart_itemに紐づく商品の税込み単価：item.with_tax_priceはitemモデル内に記述した消費税を求めるメソッド-->
-              <td><%= cart_item.item.with_tax_price %></td>
-              <td><%= cart_item.amount %></td>
-              <td><%= cart_item.subtotal %></td>
+              <td>商品合計</td>
+              <td><%= total %></td>
             </tr>
-            <% total += cart_item.subtotal %>
+            <tr>
+              <td>請求金額</td>
+              <td><%= @order.bill = total + 800 %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-4">
+          <h3>支払方法</h3>
+          <div><%= @order.pay_type_i18n %></div>
+          <h3>お届け先</h3>
+          <div><%= @order.delivery_post_code %><%= @order.delivery_address %><%= @order.delivery_name %></div>
+          <div>
+            <%= form_with model: @order, url: orders_path, local: true do |f| %>
+              <%= f.hidden_field :pay_type %>
+              <%= f.hidden_field :delivery_address %>
+              <%= f.hidden_field :bill %>
+              <%= f.hidden_field :delivery_post_code %>
+              <%= f.hidden_field :delivery_name %>
+              <%= f.hidden_field :postage %>
+              <%= f.hidden_field :order_status %>
+
+              <%= f.submit "注文を確定する" %>
             <% end %>
-          </tbody>
-        </table>
-        <table class='table mt-2'>
-          <tr>
-            <td>送料</td>
-            <td><%= 800 %></td>
-          </tr>
-          <tr>
-            <td>商品合計</td>
-            <td><%= total %></td>
-          </tr>
-          <tr>
-            <td>請求金額</td>
-            <td><%= @order.bill = total + 800 %></td>
-          </tr>
-
-        </table>
-        <h3>支払方法</h3>
-        <div><%= @order.pay_type_i18n %></div>
-        <h3>お届け先</h3>
-        <div><%= @order.delivery_post_code %><%= @order.delivery_address %><%= @order.delivery_name %></div>
-        <div>
-          <%= form_with model: @order, url: orders_path, local: true do |f| %>
-            <%= f.hidden_field :pay_type %>
-            <%= f.hidden_field :delivery_address %>
-            <%= f.hidden_field :bill %>
-            <%= f.hidden_field :delivery_post_code %>
-            <%= f.hidden_field :delivery_name %>
-            <%= f.hidden_field :postage %>
-            <%= f.hidden_field :order_status %>
-
-            <%= f.submit "注文を確定する" %>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
