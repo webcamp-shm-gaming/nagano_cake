@@ -1,4 +1,5 @@
 class Public::DeliveriesController < ApplicationController
+  before_action :authenticate_customer!
 
   def index
     @delivery = Delivery.new
@@ -11,6 +12,7 @@ class Public::DeliveriesController < ApplicationController
       flash[:notice] = "配達先情報を登録しました"
       redirect_to deliveries_path
     else
+      flash[:notice] = "全て入力してください"
       @deliveries = Delivery.all
       render "index"
     end
