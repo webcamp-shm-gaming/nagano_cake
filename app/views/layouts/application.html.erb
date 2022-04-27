@@ -1,96 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>NaganoCake</title>
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="/"><span>NaganoCake</span></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-              <% if admin_signed_in? %>
+    <% if flash[:notice] %>
+     <div class="notification is-info">
+      <p class="notice"><%= notice %></p>
+     </div>
+    <% end %>
 
-              <li>
-                <%= link_to(admin_items_path, class:"text-light") do %>
-                  商品一覧
-                <% end %>
-              </li>
-              <li>
-                <%= link_to(admin_customers_path, class:"text-light") do %>
-                  会員一覧
-                <% end %>
-              </li>
-              <li>
-                <%= link_to(root_path, class:"text-light") do %>
-                  注文履歴一覧
-                <% end %>
-              </li>
-              <li>
-                <%= link_to(admin_genres_path, class:"text-light") do %>
-                  ジャンル一覧
-                <% end %>
-              </li>
-              <li>
-                <%= button_to(destroy_admin_session_path, method: :delete, class:"text-light") do %>
-                  ログアウト
-                <% end %>
-              </li>
-            <% elsif customer_signed_in? %>
-              <li>
-                <%= link_to customers_path, class:"text-light" do %>
-                  マイページ
-                <% end %>
-              </li>
-              <li>
-                <%= link_to(items_path, class:"text-light") do %>
-                  商品一覧
-                <% end %>
-              </li>
-              <li>
-                <%= link_to(cart_items_path, class:"text-light") do %>
-                  カート
-                <% end %>
-              </li>
-              <li>
-                <%= button_to(destroy_customer_session_path, method: :delete , class:"text-light") do %>
-                  ログアウト
-                <% end %>
-              </li>
-            <% else %>
-              <li>
-                <%= link_to(homes_about_path, class:"text-light") do %>
-                  About
-                <% end %>
-              </li>
-              <li>
-                <%= link_to(items_path, class:"text-light") do %>
-                  商品一覧
-                <% end %>
-              </li>
-              <li>
-                <%= link_to(new_customer_registration_path, class:"text-light") do %>
-                  新規登録
-                <% end %>
-              </li>
-              <li>
-                <%= link_to(customer_session_path, class:"text-light") do %>
-                  ログイン
-                <% end %>
-              </li>
-            <% end %>
-            </ul>
-          </div>
-        </div>
+    <% if flash[:alert] %>
+     <div class="notification is-danger">
+      <p class="alert"><%= alert %></p>
+     </div>
+    <% end %>
+
+    <header>
+     <%= render "layouts/header" %>
     </header>
-    <%= yield %>
+
+    <main>
+      <%= yield %>
+    </main>
+
   </body>
 </html>

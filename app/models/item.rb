@@ -1,13 +1,15 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  # itemsテーブルとcart_itemsテーブルは1:Nの関係
+
   has_many :cart_items, dependent: :destroy
   has_many :order_details
   belongs_to :genre
 
   validates :price, presence: true
 
-  # 消費税を求めるメソッド
+  has_one_attached :image
+
+
   def with_tax_price
     (price * 1.1).floor
   end
