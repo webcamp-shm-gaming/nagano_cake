@@ -46,7 +46,7 @@
               </li>
             <% elsif customer_signed_in? %>
               <li>
-                <%= link_to(customers_path(current_customer.id), class:"text-light") do %>
+                <%= link_to customers_path, class:"text-light" do %>
                   マイページ
                 <% end %>
               </li>
