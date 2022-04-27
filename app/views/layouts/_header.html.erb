@@ -37,7 +37,7 @@
               <% elsif customer_signed_in? %>
                <li class="mx-auto"><p class="logincustomer nav-link text-dark">ようこそ<%= current_customer.first_name + current_customer.last_name %>さん！</p></li>
                <li class = "nav-item">
-                <%= link_to(customers_path(current_customer.id), class:"btn btn-sm btn-outline-secondary") do %>
+                <%= link_to(customers_path, class:"btn btn-sm btn-outline-secondary") do %>
                   マイページ
                 <% end %>
                </li>

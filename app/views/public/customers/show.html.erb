@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <div>登録情報</div><div><%= link_to "編集する" , edit_customers_path %></div>
+        <div>登録情報</div><div><%= link_to "編集する" , edit_customers_path, class: "btn btn-success" %></div>
         <table class="table">
           <tbody>
             <tr>
@@ -31,5 +31,5 @@
             </tr>
           </tbody>
         </table>
-        <div>配送先<%= link_to "一覧を見る", deliveries_path(@customer) %></div>
-        <div>注文履歴<%= link_to "一覧を見る",orders_path %></div>
+        <div class="form-group mt-3">配送先<%= link_to "一覧を見る", deliveries_path(@customer), class: "btn btn-primary" %></div>
+        <div class="form-group mt-3">注文履歴<%= link_to "一覧を見る",orders_path, class: "btn btn-primary" %></div>
