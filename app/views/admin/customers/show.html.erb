@@ -33,7 +33,7 @@
         </div>
         <div>
           <p>会員ステータス</p>
-          <%= @customer.is_deleted ? "有効" :  "無効" %>
+          <%= @customer.is_deleted ? "退会" :  "有効" %>
         </div>
         <div><%= link_to "編集する", edit_admin_customer_path(@customer) %></div>
       </div>
