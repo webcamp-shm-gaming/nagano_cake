@@ -27,4 +27,5 @@ private
     params.require(:customer).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :phone_number, :address, :is_deleted)
   end
 
+
 end
